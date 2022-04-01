@@ -1,0 +1,149 @@
+// 页面通用查询表单样式
+
+// =============================================== 输入框占位提示文字颜色
+input
+  &::-moz-placeholder
+    color $gray !important
+  &:-ms-input-placeholder
+    color $gray !important
+  &::-webkit-input-placeholder
+    color $gray !important
+
+// =============================================== 单个输入框
+.g-input
+  height 40px
+  .ivu-input
+    height 40px
+    padding 4px 12px
+    background #F1F3F5
+    border-radius 8px
+    border 0
+    outline 0
+    box-shadow none
+    color $black
+    &:focus
+      box-shadow none
+    &.ivu-input-disabled
+      border 1px solid #E3E3E3
+      background #FFF
+  .ivu-icon,
+  .ivu-input-icon
+    height 40px  
+    line-height 40px
+
+// =============================================== 单个下拉选择框
+.g-select
+  color $black
+  .ivu-select-selection
+    background #F1F3F5
+    border 0
+    outline 0
+    box-shadow none
+    height 40px
+    border-radius 8px
+  .ivu-select-selected-value
+    height 40px !important
+    line-height 40px !important
+    font-size 14px
+    padding-right 16px !important
+    padding-left 12px !important
+  .ivu-select-placeholder
+    font-size 14px
+    color $gray !important
+    line-height 40px !important
+    height 40px !important
+    padding-right 16px !important
+    padding-left 12px !important
+  .ivu-icon-ios-arrow-down:before // 覆盖下拉框右侧箭头图标
+    content '\F33D'
+    font-size 18px
+    color $black
+
+.ivu-select-dropdown // 下拉选择框滚动条
+  scrollbar()
+
+// =============================================== 列表查询表单样式
+.g-search // 查询表单
+  font-size 14px
+  color $black
+  .g-search-row // 按行排列
+    display flex
+    flex-wrap wrap
+    margin-bottom 8px
+  .g-form-item // 表单项
+    background #F1F3F5
+    border-radius 8px
+    display flex
+    align-items center
+    width 300px
+    height 36px
+    margin-right 20px
+    padding 7px 0 7px 14px
+    box-sizing border-box
+    transition all .5s
+    border 1px solid #F1F3F5
+    margin-bottom 12px
+    overflow hidden
+    &:hover
+      border 1px solid $black
+    label
+      margin-right 7px
+      color $gray
+      flex-shrink 0
+    input
+      width 200px
+      background #F1F3F5
+      border 0
+      outline 0
+    .ivu-input
+      width 100%
+      background #F1F3F5
+      border 0
+      outline 0
+      box-shadow none
+      color $black
+    &.g-form-item-select // 带下拉框的表单项目
+      .ivu-select
+        width 240px
+        color $black
+      .ivu-select-selection
+        background #F1F3F5
+        border 0
+        outline 0
+        box-shadow none
+        height 34px
+      .ivu-select-selected-value
+        height 34px
+        line-height 34px
+        font-size 14px
+        padding-right 16px  
+      .ivu-select-placeholder
+        font-size 14px
+        color $gray
+        line-height 34px
+        padding-right 16px  
+      .ivu-icon-ios-arrow-down:before // 覆盖下拉框右侧箭头图标
+        content '\F33D'
+        font-size 18px
+        color $black
+
+    .ivu-date-picker
+       width 240px
+    .ivu-icon-ios-calendar-outline // 隐藏掉时间选择器的日历图标
+      display none
+    .ivu-select-item-selected,
+    .ivu-select-item-selected:hover
+      color $black
+
+  .g-form-item-btn // 放重置和查询按钮
+    margin-bottom 12px
+    .btn
+      width 90px
+      height 36px
+      padding 0
+      border-radius 8px
+      color $black
+      font-size 14px
+      &.btn-reset
+        background #FFF
+        margin-right 16px
