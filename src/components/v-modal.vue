@@ -13,6 +13,7 @@
     :lock-scroll="lockScroll"
     :styles="styles"
     class="v-modal"
+    :class="{'v-modal-scroll': maxHeight}"
     :class-name="isCenter ? 'v-modal-center' : ''"
     @on-cancel="close"
   >
@@ -20,7 +21,7 @@
     <slot name="header">
       <div class="v-header">{{ title }}</div>
     </slot>
-    <div class="v-body" :class="{'v-body-scroll': maxHeight}">
+    <div class="v-body">
       <!-- 多套一层为了设置内容区max-height让滚动条到最右边，实际这样体验更佳 -->
       <div class="v-body-inner" :style="{'max-height': maxHeight}" ref="vBodyScroll">
         <slot />
@@ -142,80 +143,82 @@
 </script>
 
 <style lang="stylus" scoped>
->>>.v-modal-center
-  display flex
-  justify-content center
-  align-items center
-  .ivu-modal
-    top 0
 
 .v-modal
   position relative
   .icon-close
     position absolute
-    top 14px
-    right 14px
-    font-size 14px
+    top 12px
+    right 12px
+    font-size 12px
     transition all .3s
-    color #999999
+    color #999
     &:hover
       color #161718
       transform rotate(180deg)
 
-.v-header
-  padding 0 0 8px
-  margin 0 20px
-  border-bottom 1px solid #F0F0F0
-  font-size 16px
-  font-family SourceHanSansSC-Bold, SourceHanSansSC
-  font-weight bold
-  color #161718
-  line-height 24px
-
-.v-body
-  padding 20px 20px 0
-  &.v-body-scroll
-    padding 0 0 0 20px
-    .v-body-inner
-      width 100%
-      padding-top 20px
-      padding-right 20px
-      overflow-y auto
-      overflow-y overlay // 滚动条不会挤压内容宽度，部分浏览器不兼容
-      scrollbar-width thin // 火狐浏览器
-      scrollbar-color #FAFAFA // 火狐浏览器
-      &::-webkit-scrollbar
-        height 16px
-        width 16px
-        background #FAFAFA
-      &::-webkit-scrollbar-thumb
-        background #C7C7C7
-        background-clip content-box
-        border-radius 8px
-        border 4px solid transparent
-
-.v-footer
-  display flex
-  padding 0 20px 7px
-  .v-btn
-    flex 1
-    border-radius 8px
-    height 40px
-    font-size 14px
+  .v-header
+    padding 0 0 8px
+    margin 0 20px
+    border-bottom 1px solid #F0F0F0
+    font-size 16px
+    font-weight bold
     color #161718
-    border 1px solid #E3E3E3
-    background #FFF
-    &:not(:first-child)
-      margin-left 12px
-    &.v-btn-ok
-      border none
-      background $main-color
-      font-weight bold
 
->>>.ivu-modal-body
-  padding 14px 0
+  .v-body
+    padding 20px 20px 0
 
->>>.ivu-modal-content // 所有弹窗圆角统一 12px
-  border-radius 12px
+  .v-footer
+    display flex
+    padding 0 20px
+    .v-btn
+      flex 1
+      border-radius 8px
+      height 40px
+      font-size 14px
+      color #161718
+      border 1px solid #E3E3E3
+      background #FFF
+      &:not(:first-child)
+        margin-left 12px
+      &.v-btn-ok
+        border none
+        background #FFD121
+        font-weight bold
+
+  >>>.v-modal-center
+    display flex
+    justify-content center
+    align-items center
+    .ivu-modal
+      top 0
+  >>>.ivu-modal-body
+    padding 20px 0
+  >>>.ivu-modal-content // 所有弹窗圆角统一 12px
+    border-radius 12px
+    overflow hidden
+
+  &.v-modal-scroll // 内容区设置了最大高度，可滚动
+    // >>>.ivu-modal-body
+    //   padding 20px 0 0
+    .v-body
+      padding 0 0 0 20px
+      .v-body-inner
+        width 100%
+        padding-top 20px
+        padding-right 20px
+        overflow-y auto
+        overflow-y overlay // 滚动条不会挤压内容宽度，部分浏览器不兼容
+        scrollbar-width thin // 火狐浏览器
+        scrollbar-color #FAFAFA // 火狐浏览器
+        &::-webkit-scrollbar
+          height 16px
+          width 16px
+          background #FAFAFA
+        &::-webkit-scrollbar-thumb
+          background #C7C7C7
+          background-clip content-box
+          border-radius 8px
+          border 4px solid transparent
 
 </style>
