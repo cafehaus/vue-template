@@ -1,36 +1,33 @@
-# 基于 vue2 和 iView 4.x 的PC网站开发模板
-vue2 + iView + vue-router + vuex + axios + webpack5 + stylus
+# vue 前端 PC 网站开发模板
+
+### main 分支
+vue3 + vite + TypeScript + vue-router + pinia + eslint
+
+### vue2-iview 分支
+
+网站模板管理端风格：vue2 + iView + vue-router + vuex + axios + webpack5 + stylus
 
 #### 安装依赖
 ```
-yarn
+npm install
 ```
 
 #### 启动开发服务
 ```
-yarn dev
+npm run dev
 ```
 
 #### 构建代码
 ```
-yarn build
-```
-
-#### 使用非现代模式构建
-```
-yarn build:nomodule
+npm run build
 ```
 
 #### 修正代码风格
 ```
-yarn lint
+npm run lint
 ```
 
 
-## 自定义配置
-参见[配置参考](https://cli.vuejs.org/config)
-
-
-## 常见问题
-构建时如果提示缺少依赖，请先执行 *yarn* 安装依赖
-本地调试报 SCRIPT5022: SecurityError 解决办法：[调整IE浏览器的本地安全设置](https://www.thinbug.com/q/15114279)
+## 参考文档
+* [vue3 快速上手](https://cn.vuejs.org/guide/quick-start.html)
+* [Vue CLI 配置参考](https://cli.vuejs.org/config)
