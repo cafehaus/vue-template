@@ -19,13 +19,33 @@ const form = reactive({
   plugin: []
 })
 const ruleFormRef = ref<FormInstance>()
+const validateColor = (rule: any, value: any, callback: any) => {
+  if (!value) {
+    callback(new Error('请输入或在右侧选择主题色'))
+  } else if (!/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value)) {
+    callback(new Error('格式错误，请输入或在右侧选择正确的十六进制颜色值'))
+  } else {
+    callback()
+  }
+}
+const validateApi = (rule: any, value: any, callback: any) => {
+  const urlReg = /^(https:\/\/)?[a-zA-Z_0-9\-@]+(\.\w[a-zA-Z_0-9\-:]+)+(\/[\(\)~#&\-=?\+\%/\.\w]+)?/
+  if (!value) {
+    callback(new Error('请输入接口地址'))
+  } else if (!urlReg.test(value)) {
+    callback(new Error('格式错误，请输入正确的接口地址'))
+  } else {
+    callback()
+  }
+}
 const rules = reactive<FormRules>({
   folder: [{ required: true, message: '请选择代码目录', trigger: 'blur' }],
   name: [{ required: true, message: '请输入小程序名', trigger: 'blur' }],
-  color: [{ required: true, message: '请输入主题色', trigger: 'blur' }],
-  api: [{ required: true, message: '请输入接口地址', trigger: 'blur' }],
+  color: [{  required: true, validator: validateColor, trigger: 'blur' }],
+  api: [{  required: true, validator: validateApi, trigger: 'blur' }],
   plugin: [{ required: true, type: 'array', message: '请选择使用的插件', trigger: 'change' }],
 })
+
 
 const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
