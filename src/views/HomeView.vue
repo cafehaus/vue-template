@@ -41,7 +41,7 @@ const validateApi = (rule: any, value: any, callback: any) => {
 const rules = reactive<FormRules>({
   folder: [{ required: true, message: '请选择代码目录', trigger: 'blur' }],
   name: [{ required: true, message: '请输入小程序名', trigger: 'blur' }],
-  color: [{  required: true, validator: validateColor, trigger: 'blur' }],
+  color: [{  required: true, validator: validateColor, trigger: 'change' }],
   api: [{  required: true, validator: validateApi, trigger: 'blur' }],
   plugin: [{ required: true, type: 'array', message: '请选择使用的插件', trigger: 'change' }],
 })
@@ -54,8 +54,27 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
       const loadingInstance = ElLoading.service({
         text: '努力生成中...'
       })
-      console.log(form)
       window.electron.ipcRenderer.invoke('creatCode', JSON.parse(JSON.stringify(form))).then(r => {
+        console.log(r)
+        if (r === 'success') {
+          ElMessage({
+            showClose: true,
+            message: '保存成功',
+            type: 'success',
+          })
+        } else if (r === 'cancel') {
+          ElMessage({
+            showClose: true,
+            message: '你取消了保存',
+            type: 'info',
+          })
+        } else if (r === 'error') {
+          ElMessage({
+            showClose: true,
+            message: '出错了',
+            type: 'error',
+          })
+        }
         loadingInstance.close()
       })
     } else {
@@ -121,7 +140,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
   </main>
 </template>
 <style scoped>
-.form >>>.el-input__wrapper {
+.form :deep().el-input__wrapper {
   padding: 1px 0 1px 11px;
 }
 </style>
