@@ -6,7 +6,7 @@ import Menu from "./Menu.vue";
 <template>
   <div class="layout">
     <el-container>
-      <el-aside width="200px">
+      <el-aside width="auto">
         <Menu />
       </el-aside>
       <el-main>
@@ -20,5 +20,9 @@ import Menu from "./Menu.vue";
 .layout {
   width: 100vw;
   min-height: 100vh;
+}
+
+.layout :deep().el-main {
+  padding: 0;
 }
 </style>

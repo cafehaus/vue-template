@@ -55,7 +55,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
         text: '努力生成中...'
       })
       window.electron.ipcRenderer.invoke('creatCode', JSON.parse(JSON.stringify(form))).then(r => {
-        console.log(r)
         if (r === 'success') {
           ElMessage({
             showClose: true,
@@ -95,6 +94,13 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 <template>
   <main class="form">
+    <div>
+      <el-result icon="success" title="微慕专业版代码生成">
+        <template #sub-title>
+          <p>下载最新微慕专业版代码，通过下方配置可直接生成相应代码包</p>
+        </template>
+      </el-result>
+    </div>
     <el-form
       ref="ruleFormRef"
       :model="form"
@@ -140,6 +146,9 @@ const resetForm = (formEl: FormInstance | undefined) => {
   </main>
 </template>
 <style scoped>
+.form {
+  padding: 20px;
+}
 .form :deep().el-input__wrapper {
   padding: 1px 0 1px 11px;
 }

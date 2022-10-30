@@ -1,27 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted } from  'vue'
-import { useRoute } from "vue-router"
+import { ref, watch } from  'vue'
+import { useRoute } from 'vue-router'
 
-const docUrl = ref('')
-onMounted(() => {
-  const router = useRoute()
-  const query = router.query || {}
-  const queryId = query.id
-  console.log(queryId)
-  
-  if (queryId === '1') {
-    docUrl.value = 'https://www.hao123.com'
-  }
-  if (queryId === '2') {
-    docUrl.value = 'https://www.taobao.com'
-  }
+const route = useRoute()
+const query = route.query || {}
+let queryId: any = ref(query.id)
+watch(() => route.query, (val: any) => {
+  queryId.value = val.id
 })
 </script>
 
 <template>
   <div class="page">
-    {{ docUrl }}
-    <iframe :src="docUrl" frameborder="0" />
+    <iframe :src="queryId" frameborder="0" />
   </div>
 </template>
 <style scoped>
