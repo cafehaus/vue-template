@@ -18,8 +18,8 @@ import Menu from "./Menu.vue";
 
 <style scoped>
 .layout {
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .layout :deep().el-main {

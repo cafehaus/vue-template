@@ -131,11 +131,13 @@ const resetForm = (formEl: FormInstance | undefined) => {
       </el-form-item>
       <el-form-item label="插件" prop="plugin">
         <el-checkbox-group v-model="form.plugin">
-          <el-checkbox label="1">积分插件</el-checkbox>
-          <el-checkbox label="2">缓存插件</el-checkbox>
-          <el-checkbox label="3">红包插件</el-checkbox>
-          <el-checkbox label="4">视频号插件</el-checkbox>
-          <el-checkbox label="5">腾讯视频插件</el-checkbox>
+          <el-checkbox label="100">积分商城插件</el-checkbox>
+          <el-checkbox label="101">缓存插件</el-checkbox>
+          <el-checkbox label="102">红包插件</el-checkbox>
+          <el-checkbox label="103">视频号插件</el-checkbox>
+          <el-checkbox label="1">腾讯视频插件 tencentvideo</el-checkbox>
+          <el-checkbox label="2">直播插件 live-player-plugin</el-checkbox>
+          <el-checkbox label="3">小商店插件 mini-shop-plugin</el-checkbox>
         </el-checkbox-group>
       </el-form-item>
       <el-form-item>
